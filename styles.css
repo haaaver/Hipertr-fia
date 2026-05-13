@@ -158,11 +158,18 @@ a {
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.nav-dropdown:hover .nav-dropdown-panel,
 .nav-dropdown.is-open .nav-dropdown-panel {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-dropdown:hover .nav-dropdown-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 
 .nav-dropdown-panel a {
