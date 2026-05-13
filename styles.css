@@ -870,13 +870,16 @@ p {
   }
 
   .site-header {
-    position: static;
+    position: sticky;
+    top: 8px;
+    z-index: 1000;
     align-items: flex-start;
     flex-direction: column;
     margin-bottom: 22px;
   }
 
   .nav-links {
+    position: relative;
     width: 100%;
     justify-content: space-between;
     gap: 4px;
@@ -893,10 +896,21 @@ p {
   }
 
   .nav-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 10px);
     left: 0;
-    right: auto;
+    right: 0;
+    z-index: 1001;
     grid-template-columns: 1fr;
-    width: calc(100vw - 28px);
+    width: 100%;
+    max-height: min(68vh, 520px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-dropdown-panel a {
+    min-height: 46px;
+    padding: 12px 14px;
   }
 
   .hero {
