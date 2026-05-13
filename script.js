@@ -32,6 +32,7 @@ if (dropdown && dropdownTrigger) {
     link.addEventListener("click", () => {
       dropdown.classList.remove("is-open");
       dropdownTrigger.setAttribute("aria-expanded", "false");
+      link.blur();
     });
   });
 

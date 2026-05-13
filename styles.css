@@ -159,7 +159,6 @@ a {
 }
 
 .nav-dropdown:hover .nav-dropdown-panel,
-.nav-dropdown:focus-within .nav-dropdown-panel,
 .nav-dropdown.is-open .nav-dropdown-panel {
   opacity: 1;
   pointer-events: auto;
