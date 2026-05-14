@@ -17,36 +17,55 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
-const dropdown = document.querySelector(".nav-dropdown");
-const dropdownTrigger = document.querySelector(".nav-dropdown-trigger");
-const dropdownLinks = document.querySelectorAll(".nav-dropdown-panel a");
+const dropdowns = document.querySelectorAll(".nav-dropdown");
+const fatThemeTargets = document.querySelectorAll(".fat-nav, .fat-loss-zone");
 
-if (dropdown && dropdownTrigger) {
-  dropdownTrigger.addEventListener("click", (event) => {
+const closeDropdown = (dropdown) => {
+  const trigger = dropdown.querySelector(".nav-dropdown-trigger");
+  dropdown.classList.remove("is-open");
+  trigger?.setAttribute("aria-expanded", "false");
+};
+
+dropdowns.forEach((dropdown) => {
+  const trigger = dropdown.querySelector(".nav-dropdown-trigger");
+  const links = dropdown.querySelectorAll(".nav-dropdown-panel a");
+
+  trigger?.addEventListener("click", (event) => {
     event.stopPropagation();
+    dropdowns.forEach((item) => {
+      if (item !== dropdown) {
+        closeDropdown(item);
+      }
+    });
     const isOpen = dropdown.classList.toggle("is-open");
-    dropdownTrigger.setAttribute("aria-expanded", String(isOpen));
+    trigger.setAttribute("aria-expanded", String(isOpen));
   });
 
-  dropdownLinks.forEach((link) => {
+  links.forEach((link) => {
     link.addEventListener("click", () => {
-      dropdown.classList.remove("is-open");
-      dropdownTrigger.setAttribute("aria-expanded", "false");
+      closeDropdown(dropdown);
       link.blur();
     });
   });
+});
 
-  document.addEventListener("click", (event) => {
+document.addEventListener("click", (event) => {
+  dropdowns.forEach((dropdown) => {
     if (!dropdown.contains(event.target)) {
-      dropdown.classList.remove("is-open");
-      dropdownTrigger.setAttribute("aria-expanded", "false");
+      closeDropdown(dropdown);
     }
   });
+});
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      dropdown.classList.remove("is-open");
-      dropdownTrigger.setAttribute("aria-expanded", "false");
-    }
-  });
-}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    dropdowns.forEach(closeDropdown);
+  }
+});
+
+fatThemeTargets.forEach((target) => {
+  target.addEventListener("mouseenter", () => document.body.classList.add("fat-theme"));
+  target.addEventListener("mouseleave", () => document.body.classList.remove("fat-theme"));
+  target.addEventListener("focusin", () => document.body.classList.add("fat-theme"));
+  target.addEventListener("focusout", () => document.body.classList.remove("fat-theme"));
+});
