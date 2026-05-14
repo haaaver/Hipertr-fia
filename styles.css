@@ -51,6 +51,32 @@ body.fat-theme {
     linear-gradient(180deg, #0b0f14 0%, #160911 48%, #0d070b 100%);
 }
 
+body.muscle-theme {
+  --mint: #2fc7ff;
+  --mint-soft: rgba(47, 199, 255, 0.16);
+  --line-bright: rgba(47, 199, 255, 0.36);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(47, 199, 255, 0.18), transparent 28rem),
+    radial-gradient(circle at 82% 18%, rgba(22, 119, 170, 0.14), transparent 24rem),
+    radial-gradient(circle at 48% 74%, rgba(12, 85, 120, 0.16), transparent 34rem),
+    linear-gradient(145deg, rgba(47, 199, 255, 0.09), transparent 34%),
+    linear-gradient(225deg, rgba(25, 72, 108, 0.1), transparent 32rem),
+    linear-gradient(180deg, #0b0f14 0%, #07131a 48%, #061015 100%);
+}
+
+body.program-theme {
+  --mint: #ffbd73;
+  --mint-soft: rgba(255, 189, 115, 0.16);
+  --line-bright: rgba(255, 189, 115, 0.36);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 189, 115, 0.18), transparent 28rem),
+    radial-gradient(circle at 82% 18%, rgba(180, 105, 35, 0.13), transparent 24rem),
+    radial-gradient(circle at 48% 74%, rgba(134, 74, 24, 0.15), transparent 34rem),
+    linear-gradient(145deg, rgba(255, 189, 115, 0.1), transparent 34%),
+    linear-gradient(225deg, rgba(105, 59, 28, 0.1), transparent 32rem),
+    linear-gradient(180deg, #0b0f14 0%, #171009 48%, #100c07 100%);
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -67,6 +93,18 @@ body.fat-theme::before {
   background-image:
     linear-gradient(rgba(255, 63, 110, 0.034) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 63, 110, 0.026) 1px, transparent 1px);
+}
+
+body.muscle-theme::before {
+  background-image:
+    linear-gradient(rgba(47, 199, 255, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 199, 255, 0.024) 1px, transparent 1px);
+}
+
+body.program-theme::before {
+  background-image:
+    linear-gradient(rgba(255, 189, 115, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 189, 115, 0.024) 1px, transparent 1px);
 }
 
 a {
@@ -212,9 +250,31 @@ a {
   color: #ff6a8d;
 }
 
+.muscle-nav .nav-dropdown-trigger,
+.muscle-nav:focus-within .nav-dropdown-trigger,
+.muscle-nav.is-open .nav-dropdown-trigger {
+  color: #52d6ff;
+}
+
+.program-nav .nav-dropdown-trigger,
+.program-nav:focus-within .nav-dropdown-trigger,
+.program-nav.is-open .nav-dropdown-trigger {
+  color: #ffc986;
+}
+
 .fat-nav .nav-dropdown-trigger:hover {
   color: #ffe8ee;
   background: rgba(255, 63, 110, 0.12);
+}
+
+.muscle-nav .nav-dropdown-trigger:hover {
+  color: #e4f8ff;
+  background: rgba(47, 199, 255, 0.12);
+}
+
+.program-nav .nav-dropdown-trigger:hover {
+  color: #fff0dd;
+  background: rgba(255, 189, 115, 0.12);
 }
 
 .fat-dropdown-panel {
@@ -227,6 +287,30 @@ a {
 .fat-dropdown-panel a:hover {
   color: #ffe8ee;
   background: rgba(255, 63, 110, 0.13);
+}
+
+.muscle-dropdown-panel {
+  border-color: rgba(47, 199, 255, 0.24);
+  background:
+    linear-gradient(135deg, rgba(47, 199, 255, 0.1), transparent 42%),
+    rgba(7, 15, 20, 0.95);
+}
+
+.muscle-dropdown-panel a:hover {
+  color: #e4f8ff;
+  background: rgba(47, 199, 255, 0.13);
+}
+
+.program-dropdown-panel {
+  border-color: rgba(255, 189, 115, 0.24);
+  background:
+    linear-gradient(135deg, rgba(255, 189, 115, 0.12), transparent 42%),
+    rgba(18, 13, 8, 0.95);
+}
+
+.program-dropdown-panel a:hover {
+  color: #fff0dd;
+  background: rgba(255, 189, 115, 0.14);
 }
 
 .hero-simple {
@@ -265,6 +349,94 @@ a {
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42), 0 0 36px rgba(255, 63, 110, 0.12);
 }
 
+.muscle-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.muscle-card {
+  border: 1px solid rgba(47, 199, 255, 0.16);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(47, 199, 255, 0.08), transparent 42%),
+    var(--panel);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  scroll-margin-top: 110px;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.muscle-card:hover,
+.muscle-card[open] {
+  border-color: rgba(47, 199, 255, 0.36);
+  background: var(--panel-strong);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42), 0 0 36px rgba(47, 199, 255, 0.1);
+}
+
+.muscle-card summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 78px;
+  padding: 22px clamp(20px, 4vw, 34px);
+  cursor: pointer;
+  font-size: clamp(1.2rem, 2.6vw, 2rem);
+  font-weight: 800;
+  list-style: none;
+}
+
+.muscle-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.muscle-card summary::after {
+  content: "+";
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(47, 199, 255, 0.32);
+  border-radius: 50%;
+  color: #52d6ff;
+  flex: 0 0 auto;
+}
+
+.muscle-card[open] summary::after {
+  content: "-";
+}
+
+.muscle-card-body {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 36px);
+  padding: 0 clamp(20px, 4vw, 34px) 28px;
+}
+
+.muscle-image {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  border: 1px solid rgba(47, 199, 255, 0.18);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(47, 199, 255, 0.24), transparent 48%),
+    linear-gradient(145deg, rgba(47, 199, 255, 0.12), rgba(255, 255, 255, 0.02));
+  color: rgba(230, 246, 255, 0.78);
+  font-weight: 800;
+  text-align: center;
+}
+
+.muscle-card-body p {
+  margin-top: 0;
+}
+
+.muscle-card-body strong {
+  color: #dff7ff;
+}
+
 .fat-help {
   background:
     linear-gradient(135deg, rgba(255, 63, 110, 0.16), transparent 48%),
@@ -280,6 +452,23 @@ a {
 
 .fat-button:hover {
   box-shadow: 0 18px 64px rgba(255, 63, 110, 0.42), 0 0 28px rgba(255, 63, 110, 0.28);
+}
+
+.muscle-zone,
+.program-zone {
+  padding: 92px 0;
+  scroll-margin-top: 96px;
+}
+
+.muscle-zone .section-kicker,
+.muscle-card summary,
+.muscle-card[open] summary,
+.muscle-zone .concept-index {
+  color: #52d6ff;
+}
+
+.program-zone .section-kicker {
+  color: #ffc986;
 }
 
 .hero-simple::before {
@@ -388,6 +577,19 @@ h3 {
   margin: 0;
   font-size: 1.08rem;
   line-height: 1.25;
+}
+
+.concept-panel h3,
+.muscle-card summary span {
+  text-shadow: 0 0 16px rgba(46, 230, 166, 0.22);
+}
+
+.fat-panel h3 {
+  text-shadow: 0 0 16px rgba(255, 63, 110, 0.24);
+}
+
+.muscle-card summary span {
+  text-shadow: 0 0 16px rgba(47, 199, 255, 0.26);
 }
 
 p {
@@ -650,6 +852,19 @@ p {
   border-color: var(--line-bright);
   background: var(--panel-strong);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42), 0 0 36px rgba(46, 230, 166, 0.1);
+}
+
+.concept-panel.current-topic,
+.muscle-card.current-topic {
+  transform: scale(1.018) translateY(-4px);
+  border-color: var(--line-bright);
+  background: var(--panel-strong);
+  box-shadow: 0 28px 88px rgba(0, 0, 0, 0.45), 0 0 38px rgba(46, 230, 166, 0.14);
+}
+
+.fat-panel.current-topic {
+  border-color: rgba(255, 63, 110, 0.38);
+  box-shadow: 0 28px 88px rgba(0, 0, 0, 0.45), 0 0 38px rgba(255, 63, 110, 0.14);
 }
 
 .concept-panel-header {
@@ -1064,6 +1279,14 @@ p {
   .hero-glass .secondary-button,
   .coaching-cta .primary-button {
     width: 100%;
+  }
+
+  .muscle-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .muscle-image {
+    min-height: 180px;
   }
 
   .site-footer {
